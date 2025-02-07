@@ -17,7 +17,7 @@
         </div>
         <div class="weather">
             
-                <img src="./images/rain.png" class="weather-icon" alt="">
+                <img src="./images/rain.png" class="icon" alt="">
                 <h1 class="temp">22°C</h1>
                 <h2 class="city">addis ababa</h2>
             
@@ -48,6 +48,7 @@
         const apiurl="https://api.openweathermap.org/data/2.5/weather?units=metric&q="
        const searchBox   = document.querySelector(".search input");
        const searchBtn = document.querySelector(".search button");
+       const icon= document.querySelector(".icon");
         async function checkWeather(city){
             const response = await fetch(apiurl + city + `&appid=${apikey}`);
 
@@ -66,8 +67,25 @@ document.querySelector(".wind").innerHTML=data.wind.speed + "Kmph";
 const weatherIcon=document.querySelector("weather-icon");
 
 document.querySelector(".weather").style.display="block";
+document.querySelector(".error").style.display="none";
+
+
 if(data.weather[0].main == "Clear"){
-    weatherIcon.src="images/Clear.png"
+    icon.src="images/Clear.png";
+}
+else if(data.weather[0].main == "Rain"){
+    icon.src="images/rain.png";
+}
+else if(data.weather[0].main == "Mist"){
+    icon.src="images/mist.png";
+}else if(data.weather[0].main == "Clouds"){
+    icon.src="images/clouds.png";
+}else if(data.weather[0].main == "Snow"){
+    icon.src="images/snow.png";
+}
+else{
+    icon.src="images/drizzle";
+
 }
 }
 
